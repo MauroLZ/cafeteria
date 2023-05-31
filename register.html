@@ -1,0 +1,217 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Registration Form</title>
+    <style>
+        /* Container */
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+        }
+
+        /* Title */
+        .title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Alert Message */
+        .alert {
+            display: none;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Labels */
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        /* Input Fields */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Button */
+        .buttons {
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .buttons button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+
+        .button-3 {
+            background-color: #008CBA;
+        }
+
+        .button-3 a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Hover Styles for Buttons */
+        .buttons button:hover {
+            opacity: 0.8;
+        }
+
+        .already {
+            color: darkslateblue;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<form action="" method="POST" id="registrationform">
+    <div class="container">
+        <h1 class="title">UABCoffee</h1>
+        <h2>Register</h2>
+        <div class="alert">Account created successfully</div>
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="" id="name" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" value="" id="email" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" value="" id="password" required/>
+        </div>
+
+        <div class="buttons">
+            <button class="button-3" type="submit"><a href="register.html">Register</a></button>
+            <br>
+            <a class="already" href="login.html">Already have an account? Log in!</a>
+        </div>
+    </div>
+</form>
+<script type="module">
+
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import {createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAEqnjBr4A2BMmtUt9nKG_DKebc5UEBbr0",
+        authDomain: "cafeteria-50342.firebaseapp.com",
+        databaseURL: "https://users4182.firebaseio.com/",
+        projectId: "cafeteria-50342",
+        storageBucket: "cafeteria-50342.appspot.com",
+        messagingSenderId: "275046546605",
+        appId: "1:275046546605:web:bc8fd51a1815386ec99a24"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import {getDatabase, ref, set, get} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+
+    //listen for submit event//(1)
+    document
+        .getElementById('registrationform')
+        .addEventListener('submit', formSubmit);
+
+    //Submit form(2)
+    function formSubmit(e) {
+        e.preventDefault();
+        // Get Values from the DOM
+        let name = document.querySelector('#name').value;
+        let email = document.querySelector('#email').value;
+        let password = document.querySelector('#password').value;
+
+
+        //send message values(3)
+        sendMessage(name, email, password);
+    }
+
+    //Send Message to Firebase(4)
+
+
+    function sendMessage(name, email, password) {
+        const database = getDatabase();
+        const usersRef = ref(database, 'users/' + name);
+
+        // Check if the branch with the same name already exists
+        get(usersRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    // Branch with the same name already exists
+                    alert('Error: User already exists.');
+                } else {
+                    // Create the branch with the user's name
+                    set(usersRef, {
+                        name: name,
+                        email: email,
+                        password: password,
+                    })
+                        .then(() => {
+                            // Show Alert Message
+                            document.querySelector('.alert').style.display = 'block';
+                            // Hide Alert Message After Three Seconds
+                            setTimeout(function () {
+                                document.querySelector('.alert').style.display = 'none';
+                                window.location.href = "userIndex.html";
+                            }, 3000);
+                            document.getElementById('registrationform').reset();
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        });
+                }
+            })
+            .catch((error) => {
+                alert(error);
+            });
+    }
+</script>
+
+</body>
+
+</html>

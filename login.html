@@ -1,0 +1,199 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Login</title>
+    <style>
+        /* Container */
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+        }
+
+        /* Title */
+        .title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Labels */
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        /* Input Fields */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Buttons */
+        .buttons {
+            text-align: center;
+        }
+
+        .buttons button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button-2 {
+            background-color: #4CAF50;
+            margin-right: 10px;
+        }
+
+        .button-3 {
+            background-color: #008CBA;
+        }
+
+        .button-3 a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Hover Styles for Buttons */
+        .buttons button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+<form action="" method="POST" id="loginform">
+    <div class="container">
+        <h1 class="title">UABCoffee</h1>
+        <h2>Login</h2>
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="" id="name" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" value="" id="password" required/>
+        </div>
+
+        <div class="buttons">
+            <button class="button-2" type="submit">Log in</button>
+            <button class="button-3"><a href="register.html">Register</a></button>
+        </div>
+    </div>
+</form>
+
+
+
+<script type="module">
+
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAEqnjBr4A2BMmtUt9nKG_DKebc5UEBbr0",
+        authDomain: "cafeteria-50342.firebaseapp.com",
+        databaseURL: "https://users4182.firebaseio.com/",
+        projectId: "cafeteria-50342",
+        storageBucket: "cafeteria-50342.appspot.com",
+        messagingSenderId: "275046546605",
+        appId: "1:275046546605:web:bc8fd51a1815386ec99a24"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import {getDatabase, ref, set, get} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+
+    //listen for submit event//(1)
+    document
+        .getElementById('loginform')
+        .addEventListener('submit', formSubmit);
+
+    //Submit form(2)
+    function formSubmit(e) {
+        e.preventDefault();
+        // Get Values from the DOM
+        let name = document.querySelector('#name').value;
+        let password = document.querySelector('#password').value;
+
+
+        //send message values(3)
+        if (name === "admin") {
+            adminLogin(name, password);
+        }
+        else {
+            sendMessage(name, password);
+        }
+    }
+
+    //Send Message to Firebase(4)
+
+    function adminLogin(name, password) {
+        const database = getDatabase();
+        const usersRef = ref(database, 'users/admin');
+
+        // Check if the branch with the same name already exists
+        get(usersRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    // Branch with the same name already exists
+                    window.location.href = "indexAdmin.html";
+                } else {
+
+                    alert("Error: User does not exist!")
+                }
+            })
+            .catch((error) => {
+                alert(error);
+            });
+    }
+
+    function sendMessage(name, password) {
+        const database = getDatabase();
+        const usersRef = ref(database, 'users/' + name);
+
+        // Check if the branch with the same name already exists
+        get(usersRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    // Branch with the same name already exists
+                    window.location.href = "userIndex.html";
+                } else {
+
+                    alert("Error: User does not exist!")
+                }
+            })
+            .catch((error) => {
+                alert(error);
+            });
+    }
+</script>
+
+
+</body>
+
+</html>
