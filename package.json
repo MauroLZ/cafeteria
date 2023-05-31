@@ -1,0 +1,7 @@
+{
+  "name": "uabcoffee",
+  "version": "1.0.0",
+  "dependencies": {
+    "firebase": "^9.22.1"
+  }
+}

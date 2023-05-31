@@ -1,0 +1,355 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.form {
+    background-size: cover;
+    display: flex;
+    color: #6c4838;
+    font-family: 'Montserrat', sans-serif;
+    padding: 50px;
+    border: 1px darkgray;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h4 {
+    font-size: 24px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+input {
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.btn {
+    background-color: #e9b96e;
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 20px 0;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #b87a40;
+}
+
+#enterDetails {
+    margin-bottom: 50px;
+    width: 50%;
+}
+
+#findDetails {
+    text-align: center;
+    width: 50%;
+}
+
+#coffeeName,
+#findCoffeeID,
+#findAge {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+
+#update {
+    margin: 0 20px;
+}
+
+.coffeeDetails {
+    float: left;
+    width: 50%;
+    background-color: floralwhite;
+    color: darkslategray;
+}
+
+input {
+    width: 120px;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+header {
+    background-color: #bdab98;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.logo a {
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style: none;
+    margin-right: 45px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #333;
+}
+
+
+/* Main styles */
+main {
+    margin-top: 80px;
+    padding: 40px 20px;
+}
+
+.hero {
+    background-image: url(images/coffee-bg.jpg);
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 200px 0;
+    position: relative;
+}
+
+.hero:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #bdab98;
+    z-index: 20;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 40px;
+    transform: translateY(100px);
+    color: #bdab98;
+}
+
+.hero-btn {
+    background-color: #fff;
+    border: none;
+    color: #333;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transform: translateY(100px);
+}
+
+.hero-btn:hover {
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.menu {
+    margin-top: 80px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* CSS */
+.button-1 {
+    background-color: #EA4C89;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 20px 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-1:hover,
+.button-1:focus {
+    background-color: #F082AC;
+}
+
+.menu h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.menu-items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.menu-item {
+    width: calc(33.33333% - 20px);
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.menu-item h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.menu-item p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.menu-item .price {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.availability {
+    display: flex;
+
+}
+
+.about {
+    margin-top: 80px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.about p {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact {
+    margin-top: 80px;
+}
+
+.contact h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.contact form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact input[type="text"],
+.contact input[type="email"],
+.contact textarea {
+    display: block;
+    width: 100%;
+}
+
+.find-container {
+    border: 2px solid lightsalmon;
+    border-radius: 15px;
+}
+
+/* Footer */
